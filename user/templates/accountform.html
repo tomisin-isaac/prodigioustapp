@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} user Account {% endblock title %}
+
+{% block keywords %} {{setting.keywords}} {% endblock keywords %}
+
+{% block description %} {{setting.description}}{% endblock description %}
+
+
+<!-- Header and banner  -->
+{% block header %} {% include 'acheader.html' %} {% endblock header %}
+<!-- Header and banner done  -->
+
+{% block content %}
+    <!-- Account page  -->
+    <div class="account-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    {% if messages  %}
+                        {% for message in messages  %}
+                          <div class="alart alart-sucess alart {{message.tags}}" role="alert">
+                              <button type="button" class="close" data-dismiss="alart" aria-label="close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                              {{message}}
+                           </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-2">
+                    <div class="form-container" style="height: 500px;">
+                        <div class="form-btn">
+                            <span onclick="login()">Login</span>
+                            <span onclick="register()">Register</span>
+                            <hr id="Indicator">
+                        </div>
+                        <form id="loginForm" action="{% url 'loginform' %}" method="POST">
+                        {% csrf_token %}
+                            <input type="text" placeholder="username" name="username">
+                            <input type="password" placeholder="password" name="password">
+                            <button type="submit" class="btn">Login</button>
+                            <a href="">Forgot password?</a>
+                        </form>
+                        <form id="RegForm" action="{% url 'registerform' %}" method="POST">
+                        {% csrf_token %}
+                            <input type="text" placeholder="first_name" name="first_name">
+                            <input type="text" placeholder="last_name" name="last_name">
+                            <input type="text" placeholder="Username" name="username">
+                            <input type="email" placeholder="Email" name="email">
+                            <input type="password" placeholder="password" name="password1">
+                            <input type="password" placeholder="Repeat password" name="password2">
+                            <button type="submit" class="btn">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Account page done  -->
+{% endblock content %}
+
+{% block footer %} {% include 'footer.html' %} {% endblock footer %}

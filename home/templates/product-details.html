@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %} {{catdata.title}} {% endblock title %}
+
+{% block keywords %} {{catdata.keywords}} {% endblock keywords %}
+
+{% block description %} {{catdata.description}} {% endblock description %}
+    
+
+
+{% block prod_header %} {% include 'prod_header.html' %}{% endblock prod_header %}
+
+{% block content %}
+      <!-- single product details  -->
+      <div class="small-container single-product">
+        <div class="row">
+                <div class="col-2">
+                    <img src="{{product.image.url}}" alt="" width="100%" id="ProductImg">
+                    <div class="small-img-row">
+                        {% if images %}
+                           {% for item in images %}
+                                <div class="small-img-col">
+                                    <img src="{{item.image.url}}" alt="" width="100%" class="SmallImg">
+                                </div>
+                           {% endfor %} 
+                        {% endif %}
+                    </div>
+                </div>
+            
+            <div class="col-2">
+                <p>{{product.title}}</p>
+                <h1>{{product.description}}</h1>
+                <h4><span style="color: #ff523b;">{{product.available}}</span></h4>
+                <h4>     
+                    {% if product.discount_price %}
+                        <del>${{product.price | floatformat:3 | intcomma}}</del>
+                        <span>${{product.discount_price | floatformat:3 | intcomma}}</span>
+                    {% else %}
+                        <span>${{product.price | floatformat:3 | intcomma}}</span>    
+                    {% endif %}  
+                </h4>
+                <h4><strong>Available sizes</strong><span style="color: #ff523b;">{{product.sizes}}</span></h4>
+                <form action="{% url 'order:addtoshopcart' %}" method="POST">
+                    {% csrf_token %}
+                    <select name="size">
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                    <label>Qty:</label>
+                    <input type="number" name="quantity" value="1" min="{{product.minquantity}}" max="{{product.quantity_instock}}">
+                    <button type="submit" class="btn" value="Add to cart">Add to Cart</button>
+                    <input type="hidden" name="prodid" value="{{product.id}}">
+                </form>
+                <h3>product Details <i class="fa fa-indent"></i></h3>
+                <br>
+                <p>{{product.detail|safe}}</p>
+                <!-- <select>
+                    <option>Select Size</option>
+                    <option>XL</option>
+                    <option>Large</option>
+                    <option>Medium</option>
+                    <option>Small</option>
+                </select> -->
+                <!-- <input type="number" value="1">
+                <a href="cart.html" class="btn">Add To Cart</a>
+                <h3>Product Details<i class="fa fa indent"></i></h3>
+                <br>
+                <p>Shifon down is made of lightweight, stretchy, smooth, fabrics.
+                    so silky mixed with satin, lycra, charmcuse, chiffon and lace
+                </p> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- title  -->
+    <div class="small-container">
+        <div class="row row-2">
+            <h2>Related Products</h2>
+            <a href="{% url 'category' %}" class="btn">View More</a>
+        </div>
+    </div>
+
+    <!-- Products  -->
+    <div class="small-container">
+        <div class="row">
+            {% if products %}
+                {% for item in products %}
+                    <div class="col-4">
+                        <a href="{% url 'prod_details' item.id item.slug %}"><img src="{{item.image.url}}" alt=""></a>
+                        <a href="{% url 'prod_details' item.id item.slug %}"><h4>{{item.title}}</h4></a>
+                        <a href="{% url 'prod_details' item.id item.slug %}" class="category">{{item.category}}</a>
+                        <div class="ratings">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <p class="price">
+                            {% if item.discount_price %}
+                                <del>#{{item.price | floatformat:2 | intcomma}}</del>
+                                <span>#{{item.discount_price | floatformat:2 | intcomma}}</span>
+                            {% else %}
+                                <span>#{{item.price | floatformat:2 | intcomma}}</span>                                
+                            {% endif %}           
+                        </p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+<!-- product details end here  -->
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+     <!-- footer -->
+     <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Vist our store</h3>
+                    <p>Be assured of exciting shopping Expreience</p>
+                </div>
+                <div class="footer-col-2">
+                    <img src="images/pro.png" alt="">
+                    <p>We have top quality Products at best prices</p>
+                </div>
+                <div class="footer-col-3">
+                    <ul>
+                        <li><a href="index.html">Home Page</a></li>
+                        <li><a href="about.html">About Page</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="cart.html">Your cart</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <ul>
+                        <li><a href="">Facebook</a></li>
+                        <li><a href="">Instagram</a></li>
+                        <li><a href="">Twitter</a></li>
+                        <li><a href="">Whatsapp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2021 &copy; prodigious stores</p>
+        </div>
+    </div>
+    <!-- footer ends here  -->
+
+    <!-- js for togglemenu  -->
+    <script src="js/togglemenu.js"></script>
+    <!-- js for product gallery  -->
+    <script src="js/gallery.js"></script>
+    <!-- js for product gallery done  -->
+</body>
+</html>

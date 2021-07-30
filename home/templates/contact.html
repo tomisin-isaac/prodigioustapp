@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Contact Us| {{setting.title}} {% endblock title %}
+
+{% block keywords %} {{product.keywords}} {% endblock keywords %}
+
+{% block description %} {{product.description}} {% endblock description %}
+
+
+    {% block header %} {% include 'header.html' %} {% endblock header %}
+
+    <!-- Account page  -->
+    {% block content %}
+        <div class="account-page">
+            <div class="container">
+                <h2 class="title"><strong>Contact</strong> Us</h2>
+                <div class="row">
+                    <div class="col-2" style="padding-top: 50px;">
+                        {{setting.contact | safe}}
+                    </div>
+                    <div class="col-2">
+                        <div class="form-container" style="height: 530px;">
+                            <h2 class="title"><strong>Contact</strong> Form</h2>
+                            <form action="{% url 'contact' %}" method="POST">
+                            {% csrf_token %}
+                                <input type="text" placeholder="first and last name" name="name">
+                                <input type="email" placeholder="Email" name="email">
+                                <input type="text" placeholder="subject" name="subject">
+                                <textarea name="message" placeholder="Your message" cols="30" rows="8"></textarea>
+                                <button type="submit" class="buttons">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock content %}
+
+    {% block brands %} {% include 'brands.html' %}{% endblock brands %}
+      
+    {% block footer %} {% include 'footer.html' %}{% endblock footer %}

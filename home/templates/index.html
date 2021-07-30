@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+ <!-- header and banner combinned  -->
+ {% block header %} {% include 'header.html' %} {% endblock header %}
+ <!-- header and banner ends combinned  -->
+
+ <!-- featured categories start here  -->
+ {% block content %} {% include 'content.html' %} {% endblock content %}
+ <!-- featured categories ends here  -->
+
+ <!-- offer products  -->
+ {% block offer %} {% include 'offer.html' %} {% endblock offer %}
+ <!-- offer products ends here  -->
+
+ <!-- testimonial  -->
+ {% block testimonial %} {% include 'testimonial.html' %} {% endblock testimonial %}
+ <!-- testimonial ends here  -->
+
+ <!-- brands  -->
+ {% block brands %} {% include 'brands.html' %} {% endblock brands %}
+ <!-- brands ends here  -->
+
+ <!-- footer -->
+ {% block footer %} {% include 'footer.html' %} {% endblock footer %}
+ <!-- footer ends here  -->

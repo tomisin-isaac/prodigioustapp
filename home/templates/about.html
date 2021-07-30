@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} About Us|{{setting.title}}{% endblock title %}
+{% block keywords %} {{setting.keywords}} {% endblock keywords %}
+{% block description %} {{setting.description}} {% endblock description %}
+
+    <!-- header and banner combinned  -->
+    {% block header %} {% include 'header.html' %} {% endblock header %}
+    <!-- header done  -->
+
+    {% block content %}
+      <!-- Account page  -->
+        <div class="account-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        {{setting.about|safe}}
+                    </div>
+                    <div class="col-2">
+                        {{setting.about|safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Account page done  -->
+    {% endblock content %}
+    
+
+    <!-- testimonial  -->
+    {% block testimonial %} {% include 'testimonial.html' %} {% endblock testimonial %}
+    <!-- testimonial ends here  -->
+
+    <!-- footer -->
+    {% block footer %} {% include 'footer.html' %} {% endblock footer %}
+    <!-- footer ends here  -->

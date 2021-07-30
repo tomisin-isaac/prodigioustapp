@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} order completed {% endblock title %}
+
+{% block keywords %} {{product.keywords}} {% endblock keywords %}
+
+{% block description %} {{product.description}}{% endblock description %}
+
+
+<!-- Header and banner  -->
+{% block header %} {% include 'acheader.html' %} {% endblock header %}
+<!-- Header and banner done  -->
+
+{% block content %}
+    <!-- Account page  -->
+    <div class="account-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <div class="uform container">
+                        <h4>Dear <span style="color: #ff523b;">{{profile.user.username}} {{profile.user.last_name}}</span></h4>
+                        <h5>Your order is completed</h5>
+                        <p>Thank You for your patronage</p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="row">
+                        <div class="col-2">
+                            <img src="{{offer.image.url}}" class="offer img">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <p>Esclusively availabable at prodigious store</p>
+                    <h1>Lingerie</h1>
+                    <small>
+                        Our range of woman's Lingerie is a must have in any underwear drawer.
+                        so, get ready to impress while you underess with the best range of lingeries.
+                    </small>
+                    <a href="{% url 'category' %}" class="buttons">Buy Now &#8594;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Account page done  -->
+{% endblock content %}
+
+{% block footer %} {% include 'footer.html' %} {% endblock footer %}

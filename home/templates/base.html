@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keyword" content="{% block 'keywords' %} Home {% endblock 'keywords' %}">
+    <meta name="description" content="{% block description %} Home {% endblock description %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>{% block title %} Home|prodigious storeapp {% endblock title %}</title>
+
+    
+    <link rel="stylesheet" href="{% static '' %}css/day10.css">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{setting.icon.url}}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Prodigious | Ecommerece store</title>
+</head>
+<body>
+<section class="body">
+    <!-- header and banner combinned  -->
+    {% block header %} {% endblock header %}
+    <!-- header and banner ends combinned  -->
+
+    <!-- pro_header starts  -->
+    {% block prod_header %}{% endblock prod_header %}
+    <!-- pro_header ends  -->
+
+    <!-- featured categories start here  -->
+    {% block content %} {% endblock content %}
+    <!-- featured categories ends here  -->
+
+    <!-- offer products  -->
+    {% block offer %} {% endblock offer %}
+    <!-- offer products ends here  -->
+
+    <!-- testimonial  -->
+    {% block testimonial %} {% endblock testimonial %}
+    <!-- testimonial ends here  -->
+
+    <!-- brands  -->
+    {% block brands %} {% endblock brands %}
+    <!-- brands ends here  -->
+
+    <!-- footer -->
+    {% block footer %} {% endblock footer %}
+    <!-- footer ends here  -->
+
+    <!-- js for togglemenu  -->
+    <script src="{% static '' %}js/togglemenu.js"></script>
+    <!-- js for togglemenu ends  -->
+
+    <!-- js for gallary  -->
+    <script src="{% static '' %}js/gallery.js"></script>
+    <!-- js for gallary ends -->
+
+    <!-- js for toggleform  -->
+    <script src="{% static '' %}js/toggleform.js"></script>
+    <!-- js for toggleform ends  -->
+</section>
+</body>
+</html>

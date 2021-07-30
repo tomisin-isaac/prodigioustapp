@@ -1,0 +1,64 @@
+{% load static %}
+<div class="headermain">
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <a href="index.html"><img src="{{setting.logo.url}}" alt="Company's logo"></a>
+            </div>
+            <div class="navbar">
+                <ul id="MenuItems">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'category' %}">Category</a></li>
+                    {% if  user.id is not None %}
+                        <li><a href="{% url 'user' %}"><img src="{{profile.image.url}}" style="border-radius: 30px; height: 50px;"></a></li>
+                        <li>
+                            <a href="{% url 'user' %}">Welcome!
+                                {% if request.user.first_name %}
+                                    {{request.user.first_name}}
+                                {% else %}
+                                   {{request.user.username}}
+                                {% endif %}   
+                            </a>
+                        </li>
+                        <li><a href="{% url 'logoutfunc' %}">Logout</a></li>
+                        <li><a href=""></a>Change password</li>
+                        {% else %}
+                            <li><a href="{% url 'accountform' %}">Account</a></li>
+                        {% endif %}     
+                </ul>
+            </div>
+            <a href="{% url 'order:shopcart' %}"><img src="{{setting.cart_icon.url}}" alt="shop cart" width="30px" height="30px">
+                {% if itemcount > 0 %}
+                    <span class="badge red 2-depth-1 mr-1">{{itemcount}}</span>
+                {% else %}
+                    <span class="badge red z-depth-1 mr-1">0</span>
+                {% endif %}
+            </a>
+            <img src="{{setting.menu_icon.url}}" class="menu-icon" onclick="menutoggle()">    
+        </div>
+    {% if messages  %}
+        {% for message in messages  %}
+            <div class="alart alart-sucess alart {{message.tags}}" role="alert">
+                <button type="button" class="close" data-dismiss="alart" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+        <!-- banner area  -->
+        <div class="row">
+            <div class="col-2">
+                <h1>Give Your Work some <br> Class And Style</h1>
+                <p>
+                    {{setting.banner_text|safe}}
+                </p>
+                <a href="" class="btn">Explore Now &#8594;</a>
+            </div>
+            <div class="col-2">
+                <img src="{{banner.image.url}}">
+            </div>    
+        </div>
+    </div>
+</div>
+<!-- Header and banner done  -->
